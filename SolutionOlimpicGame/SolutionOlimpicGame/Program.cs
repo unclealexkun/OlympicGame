@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SolutionOlimpicGame
 {
@@ -10,6 +7,20 @@ namespace SolutionOlimpicGame
 	{
 		static void Main(string[] args)
 		{
+			var line = Console.ReadLine();
+			if (line != null)
+			{
+				string j = line;
+
+				line = Console.ReadLine();
+
+				if (line != null)
+				{
+					string s = line;
+
+					Console.Write(s.Select(x => j.IndexOf(x) != -1).Count(y => y));
+				}
+			}
 		}
 	}
 }
