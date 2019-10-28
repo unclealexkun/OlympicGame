@@ -30,6 +30,13 @@ namespace SolutionOlimpicGame
 					else
 					{
 						++countOne;
+						if (index == size - 1)
+						{
+							if (maxValue < countOne)
+							{
+								maxValue = countOne;
+							}
+						}
 					}
 				}
 
