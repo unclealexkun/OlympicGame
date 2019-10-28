@@ -12,35 +12,28 @@ namespace SolutionOlimpicGame
 				var size = 0;
 				int.TryParse(line, out size);
 
-				var maxValue = 0;
-				var countOne = 0;
+				var maxLenght = 0;
+				var count = 0;
 
 				for (var index = 0; index < size; ++index)
 				{
 					var element = 0;
 					int.TryParse(Console.ReadLine(), out element);
-					if (element == 0)
+					if (element > 0)
 					{
-						if (maxValue < countOne)
+						++count;
+						if (maxLenght < count)
 						{
-							maxValue = countOne;
+							maxLenght = count;
 						}
-						countOne = 0;
 					}
 					else
 					{
-						++countOne;
-						if (index == size - 1)
-						{
-							if (maxValue < countOne)
-							{
-								maxValue = countOne;
-							}
-						}
+						count = 0;
 					}
 				}
 
-				Console.Write(maxValue);
+				Console.Write(maxLenght);
 			}
 		}
 	}
