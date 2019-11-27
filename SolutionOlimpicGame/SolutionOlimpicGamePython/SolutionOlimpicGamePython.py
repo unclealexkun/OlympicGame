@@ -1,11 +1,11 @@
-text_one = input().lower()
-text_two = input().lower()
+text_one = input().lower().strip()
+text_two = input().lower().strip()
 
-if len(text_one) != len(text_two):
+if len(text_one) != len(text_two) and not(text_one.isalpha or text_two.isalpha):
     print(0)
 
-text_one = sorted(text_one).strip()
-text_two = sorted(text_two).strip()
+text_one = sorted(text_one)
+text_two = sorted(text_two)
 
 isAnagram = True
 
