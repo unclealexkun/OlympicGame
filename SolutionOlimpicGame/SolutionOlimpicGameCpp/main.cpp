@@ -10,7 +10,7 @@ int main()
     setlocale(LC_ALL, "RUS");
 
     const int n = 10;
-    int* a = new int[n] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int* a = new int[n] {1, 2, 3, 4, 6, 5, 7, 8, 9, 10};
 
     int index = 0;
     int sum = 0;
@@ -45,21 +45,31 @@ int main()
     printf_s("index = %3d\n", show_index);
     printf_s("avg = %7.2f\n", (float)sum / count);
 
-    //Замена значений
-    int* buffer_a;
-    int* buffer_b;
-    int* pointer = a;
-    buffer_a = pointer;
-    pointer += show_index;
-    buffer_b = pointer;
-    pointer = buffer_a;
-    pointer -= show_index;
-    pointer = buffer_b;
+    //Для замена значений
+    int buffer_a = 0;
+    int buffer_b = 0;
+    int countChange = 0;
+
+    for (int* i = a; i != a + n; i++)
+    {
+	    if (countChange == 0)
+	    {
+            buffer_a = *i; // берём первый элемент из массива
+	    }
+
+        if (countChange == show_index)
+        {
+            buffer_b = *i; // берём условный элемент из массива
+            *i = buffer_a;
+        }
+        countChange++;
+    }
+    int *i = a;
+    *i = buffer_b;
 
     for (int* i = a; i != a + n; i++)
     {
         printf_s("%3d", *i);
-
     }
 
     printf_s("\n");
