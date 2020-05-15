@@ -10,7 +10,7 @@ int main()
     setlocale(LC_ALL, "RUS");
 
     const int n = 10;
-    int* a = new int[n] {1, 2, 3, 4, 6, 5, 7, 8, 9, 10};
+    int* a = new int[n] {1, 2, 3, 4, 6, 5, 7, 8, 9, 10}; //Стандарт С++ 2011
 
     int index = 0;
     int sum = 0;
@@ -48,21 +48,21 @@ int main()
     //Для замена значений
     int buffer_a = 0;
     int buffer_b = 0;
-    int countChange = 0;
+    index = 0;
 
     for (int* i = a; i != a + n; i++)
     {
-	    if (countChange == 0)
+	    if (index == 0)
 	    {
             buffer_a = *i; // берём первый элемент из массива
 	    }
 
-        if (countChange == show_index)
+        if (index == show_index)
         {
             buffer_b = *i; // берём условный элемент из массива
             *i = buffer_a;
         }
-        countChange++;
+        index++;
     }
     int *i = a;
     *i = buffer_b;
@@ -74,7 +74,7 @@ int main()
 
     printf_s("\n");
 
-    //system("pause");
+    system("pause");
 
     return 0;
 }
