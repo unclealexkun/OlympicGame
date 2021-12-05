@@ -44,7 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AVLTree.cs" />
-    <Compile Include="Common.cs" />
+    <Compile Include="BasicAVLTreeOperation.cs" />
+    <Compile Include="IAVLTree.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

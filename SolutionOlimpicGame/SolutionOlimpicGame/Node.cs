@@ -10,6 +10,11 @@
 		public int Key { get; set; }
 
 		/// <summary>
+		/// Значение узла.
+		/// </summary>
+		public int Value { get; set; }
+
+		/// <summary>
 		/// Высота поддерева с корнем в данном узле.
 		/// </summary>
 		public int Height { get; set; }
@@ -32,9 +37,11 @@
 		/// Конструктор.
 		/// </summary>
 		/// <param name="key">Ключ узла.</param>
-		public Node(int key)
+		/// <param name="value">Значение.</param>
+		public Node(int key, int value)
 		{
 			this.Key = key;
+			this.Value = value;
 			Left = null;
 			Rigth = null;
 			Height = 1;

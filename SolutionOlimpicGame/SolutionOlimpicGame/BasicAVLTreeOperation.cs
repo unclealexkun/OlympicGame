@@ -1,6 +1,6 @@
 ﻿namespace SolutionOlimpicGame
 {
-	public static class Common
+	public static class BasicAVLTreeOperation
 	{
 		#region Методы
 
@@ -41,10 +41,10 @@
 		}
 
 		/// <summary>
-		/// Правый разворот дерева.
+		/// Правый разворот поддерева.
 		/// </summary>
 		/// <param name="node">Узел</param>
-		/// <returns>Разворот дерева.</returns>
+		/// <returns>Разворот поддерева.</returns>
 		public static Node RotateRight(Node node)
 		{
 			var leftNode = node.Left;
@@ -57,10 +57,10 @@
 		}
 
 		/// <summary>
-		/// 
+		/// Левый разворот поддерева.
 		/// </summary>
-		/// <param name="node"></param>
-		/// <returns></returns>
+		/// <param name="node">Узел</param>
+		/// <returns>Разворот поддерева.</returns>
 		public static Node RotateLeft(Node node)
 		{
 			var rigthNode = node.Rigth;
@@ -73,10 +73,10 @@
 		}
 
 		/// <summary>
-		/// 
+		/// Балансировка поддерева.
 		/// </summary>
-		/// <param name="node"></param>
-		/// <returns></returns>
+		/// <param name="node">Узел.</param>
+		/// <returns>Скорректированное поддерево.</returns>
 		public static Node Balance(Node node)
 		{
 			node.Height = FixHeight(node);
@@ -105,31 +105,32 @@
 		}
 
 		/// <summary>
-		/// 
+		/// Вставка ключей.
 		/// </summary>
-		/// <param name="node"></param>
-		/// <param name="key"></param>
-		/// <returns></returns>
-		public static Node Insert(Node node, int key)
+		/// <param name="node">Узел.</param>
+		/// <param name="key">Ключ.</param>
+		/// <param name="value">Значение.</param>
+		/// <returns>Узел со вставленным значением.</returns>
+		public static Node Insert(Node node, int key, int value)
 		{
-			if (node != null)
+			if (node == null)
 			{
-				return new Node(key);
+				return new Node(key, value);
 			}
 
 			if (key < node.Key)
-				node.Left = Insert(node.Left, key);
+				node.Left = Insert(node.Left, key, value);
 			else
-				node.Rigth = Insert(node.Rigth, key);
+				node.Rigth = Insert(node.Rigth, key, value);
 
 			return Balance(node);
 		}
 
 		/// <summary>
-		/// 
+		/// Находим узел с минимальным ключом в поддереве.
 		/// </summary>
-		/// <param name="node"></param>
-		/// <returns></returns>
+		/// <param name="node">Узел.</param>
+		/// <returns>Узла с минимальным ключом в поддереве.</returns>
 		public static Node FindMin(Node node)
 		{
 			return node.Left == null
@@ -138,10 +139,10 @@
 		}
 
 		/// <summary>
-		/// 
+		/// Удаление узла с минимальным ключом из поддерева.
 		/// </summary>
-		/// <param name="node"></param>
-		/// <returns></returns>
+		/// <param name="node">Узел.</param>
+		/// <returns>Узлел без минимального ключа в поддереве.</returns>
 		public static Node RemoveMin(Node node)
 		{
 			if (node.Left == null)
@@ -152,11 +153,11 @@
 		}
 
 		/// <summary>
-		/// 
+		/// Удаление ключа из поддерева.
 		/// </summary>
-		/// <param name="node"></param>
-		/// <param name="key"></param>
-		/// <returns></returns>
+		/// <param name="node">Узел.</param>
+		/// <param name="key">Ключ.</param>
+		/// <returns>Узел без ключа.</returns>
 		public static Node Remove(Node node, int key)
 		{
 			if (node == null)
@@ -184,6 +185,37 @@
 			}
 
 			return Balance(node);
+		}
+
+		/// <summary>
+		/// Получить узел со значением.
+		/// </summary>
+		/// <param name="node">Узел.</param>
+		/// <param name="key">Ключ.</param>
+		/// <returns>Узел со значением.</returns>
+		public static Node GetNodeValue(Node node, int key)
+		{
+			if (node == null)
+				return null;
+
+			if (key < node.Key)
+				node.Left = GetNodeValue(node.Left, key);
+			else if (key > node.Key)
+				node.Rigth = GetNodeValue(node.Rigth, key);
+			else 
+			{
+				var leftNode = node.Left;
+				var rightNode = node.Rigth;
+
+				if (rightNode != null)
+				{
+					return rightNode;
+				}
+
+				return node;
+			}
+
+			return node;
 		}
 
 		#endregion
