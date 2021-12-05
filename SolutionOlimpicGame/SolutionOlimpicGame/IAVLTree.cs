@@ -12,8 +12,8 @@
 		/// Получить значение по ключу.
 		/// </summary>
 		/// <param name="key">Ключ.</param>
-		/// <returns>Значение по хранящему ключу.</returns>
-		int GetValue(int key);
+		/// <returns>Значение по хранящему ключу или null.</returns>
+		int? GetValue(int key);
 
 		/// <summary>
 		/// Добавить элемент в дерево.

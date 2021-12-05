@@ -18,10 +18,10 @@
 			return string.Empty;
 		}
 
-		public int GetValue(int key)
+		public int? GetValue(int key)
 		{
-			var result = BasicAVLTreeOperation.GetNodeValue(this.node, key);
-			return result.Value;
+			BasicAVLTreeOperation.GetNodeValue(this.node, key, out var result);
+			return result;
 		}
 
 		public void Add(int key, int value)

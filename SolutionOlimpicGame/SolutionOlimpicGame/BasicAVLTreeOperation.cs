@@ -193,25 +193,21 @@
 		/// <param name="node">Узел.</param>
 		/// <param name="key">Ключ.</param>
 		/// <returns>Узел со значением.</returns>
-		public static Node GetNodeValue(Node node, int key)
+		public static Node GetNodeValue(Node node, int key, out int? value)
 		{
 			if (node == null)
+			{
+				value = null;
 				return null;
+			}
 
 			if (key < node.Key)
-				node.Left = GetNodeValue(node.Left, key);
+				node.Left = GetNodeValue(node.Left, key, out value);
 			else if (key > node.Key)
-				node.Rigth = GetNodeValue(node.Rigth, key);
+				node.Rigth = GetNodeValue(node.Rigth, key, out value);
 			else 
 			{
-				var leftNode = node.Left;
-				var rightNode = node.Rigth;
-
-				if (rightNode != null)
-				{
-					return rightNode;
-				}
-
+				value = node.Value;
 				return node;
 			}
 
