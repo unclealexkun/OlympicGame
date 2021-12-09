@@ -12,9 +12,13 @@ namespace SolutionOlimpicGame
 			tree.Add(3, 1);
 			tree.Add(4, 3);
 
+			tree.Print();
+
 			Console.WriteLine(tree.GetValue(3));
 
 			tree.Remove(3);
+
+			tree.Print();
 
 			Console.WriteLine(tree.GetValue(3));
 			Console.WriteLine(tree.GetValue(4));

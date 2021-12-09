@@ -1,27 +1,58 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SolutionOlimpicGame
 {
+	/// <summary>
+	/// Базовые операции над деревом.
+	/// </summary>
 	public static class BasicAVLTreeOperation
 	{
 		#region Вложенный метод
 
+		/// <summary>
+		/// Информация о узле.
+		/// </summary>
 		private class NodeInfo
 		{
+			/// <summary>
+			/// Узел.
+			/// </summary>
 			public Node Node { get; set; }
 
+			/// <summary>
+			/// Сообщение.
+			/// </summary>
 			public string Text { get; set; }
 
+			/// <summary>
+			/// Начальная позиция.
+			/// </summary>
 			public int StartPosition { get; set; }
 
+			/// <summary>
+			/// Размер.
+			/// </summary>
 			public int Size { get { return Text.Length; } }
 
+			/// <summary>
+			/// Конечная позиция.
+			/// </summary>
 			public int EndPosition { get { return StartPosition + Size; } set { StartPosition = value - Size; } }
 
+			/// <summary>
+			/// Родительский узел.
+			/// </summary>
 			public NodeInfo Parent { get; set; }
 
+			/// <summary>
+			/// Левый узел.
+			/// </summary>
 			public NodeInfo Left { get; set; } 
 
+			/// <summary>
+			/// Правый узел.
+			/// </summary>
 			public NodeInfo Right { get; set; }
 		}
 
@@ -245,8 +276,91 @@ namespace SolutionOlimpicGame
 			if (node == null) return;
 
 			int nodeTop = Console.CursorTop + topMargin;
-			var last = new List<>();
+			var last = new List<NodeInfo>();
 			var next = node;
+
+			for (int level = 0; next != null; level++)
+			{
+				var item = new NodeInfo()
+				{
+					Node = next,
+					Text = $"({next.Key.ToString(textFormat)}; {next.Value.ToString(textFormat)})",
+				};
+
+				if (level < last.Count)
+				{
+					item.StartPosition = last[level].EndPosition + spacing;
+					last[level] = item;
+				}
+				else
+				{
+					item.StartPosition = leftMargin;
+					last.Add(item);
+				}
+
+				if (level > 0)
+				{
+					item.Parent = last[level - 1];
+
+					if (next == item.Parent.Node.Left)
+					{
+						item.Parent.Left = item;
+						item.EndPosition = Math.Max(item.EndPosition, item.Parent.StartPosition - 1);
+					}
+					else
+					{
+						item.Parent.Right = item;
+						item.StartPosition = Math.Max(item.StartPosition, item.Parent.EndPosition + 1);
+					}
+				}
+
+				next = next.Left ?? next.Rigth;
+
+				for (; next == null; item = item.Parent)
+				{
+					var top = nodeTop + 2 * level;
+					Print(item.Text, top, item.StartPosition);
+
+					if (item.Left != null)
+					{
+						Print("/", top + 1, item.Left.EndPosition);
+						Print("_", top, item.Left.EndPosition + 1, item.StartPosition);
+					}
+
+					if (item.Right != null)
+					{
+						Print("_", top, item.EndPosition, item.Right.StartPosition - 1);
+						Print("\\", top + 1, item.Right.StartPosition - 1);
+					}
+
+					if (--level < 0)
+						break;
+
+					if (item == item.Parent.Left)
+					{
+						item.Parent.StartPosition = item.EndPosition + 1;
+						next = item.Parent.Node.Rigth;
+					}
+					else
+					{
+						if (item.Parent.Left == null)
+							item.Parent.EndPosition = item.StartPosition - 1;
+						else
+							item.Parent.StartPosition += (item.StartPosition - 1 - item.Parent.EndPosition) / 2;
+					}
+				}
+			}
+
+			Console.SetCursorPosition(0, nodeTop + 2 * last.Count - 1);
+		}
+
+		private static void Print(string input, int top, int left, int right = -1)
+		{
+			Console.SetCursorPosition(left, top);
+			if (right < 0) 
+				right = left + input.Length;
+			while (Console.CursorLeft < right) 
+				Console.Write(input);
 		}
 
 		#endregion

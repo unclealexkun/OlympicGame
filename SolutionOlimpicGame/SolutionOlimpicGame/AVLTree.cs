@@ -1,5 +1,8 @@
 ﻿namespace SolutionOlimpicGame
 {
+	/// <summary>
+	/// AVL дерево.
+	/// </summary>
 	public class AVLTree : IAVLTree
 	{
 		#region Поля и свойства

@@ -1,5 +1,8 @@
 ﻿namespace SolutionOlimpicGame
 {
+	/// <summary>
+	/// Узел.
+	/// </summary>
 	public class Node
 	{
 		#region Поля и свойства
