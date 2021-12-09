@@ -15,7 +15,7 @@
 
 		public void Print()
 		{
-			
+			BasicAVLTreeOperation.Print(this.node);
 		}
 
 		public int? GetValue(int key)

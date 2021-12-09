@@ -1,7 +1,32 @@
-﻿namespace SolutionOlimpicGame
+﻿using System;
+
+namespace SolutionOlimpicGame
 {
 	public static class BasicAVLTreeOperation
 	{
+		#region Вложенный метод
+
+		private class NodeInfo
+		{
+			public Node Node { get; set; }
+
+			public string Text { get; set; }
+
+			public int StartPosition { get; set; }
+
+			public int Size { get { return Text.Length; } }
+
+			public int EndPosition { get { return StartPosition + Size; } set { StartPosition = value - Size; } }
+
+			public NodeInfo Parent { get; set; }
+
+			public NodeInfo Left { get; set; } 
+
+			public NodeInfo Right { get; set; }
+		}
+
+		#endregion
+
 		#region Методы
 
 		/// <summary>
@@ -212,6 +237,16 @@
 			}
 
 			return node;
+		}
+
+
+		public static void Print(Node node, string textFormat = "0", int spacing = 1, int topMargin = 2, int leftMargin = 2)
+		{
+			if (node == null) return;
+
+			int nodeTop = Console.CursorTop + topMargin;
+			var last = new List<>();
+			var next = node;
 		}
 
 		#endregion
