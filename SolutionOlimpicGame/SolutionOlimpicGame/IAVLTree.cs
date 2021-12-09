@@ -5,8 +5,7 @@
 		/// <summary>
 		/// Вывод дерева.
 		/// </summary>
-		/// <returns>Дерево в формате строки.</returns>
-		string Print();
+		void Print();
 
 		/// <summary>
 		/// Получить значение по ключу.

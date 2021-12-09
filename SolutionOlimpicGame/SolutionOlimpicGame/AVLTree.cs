@@ -13,9 +13,9 @@
 
 		#region IAVLTree
 
-		public string Print()
+		public void Print()
 		{
-			return string.Empty;
+			
 		}
 
 		public int? GetValue(int key)
