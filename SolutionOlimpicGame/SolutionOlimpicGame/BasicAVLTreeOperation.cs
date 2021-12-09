@@ -190,7 +190,7 @@ namespace SolutionOlimpicGame
 		public static Node FindMin(Node node)
 		{
 			return node.Left == null
-				? FindMin(node)
+				? FindMin(node.Left)
 				: node;
 		}
 
@@ -228,9 +228,9 @@ namespace SolutionOlimpicGame
 				var leftNode = node.Left;
 				var rightNode = node.Rigth;
 
-				if (rightNode != null)
+				if (rightNode == null)
 				{
-					return rightNode;
+					return leftNode;
 				}
 
 				var min = FindMin(rightNode);

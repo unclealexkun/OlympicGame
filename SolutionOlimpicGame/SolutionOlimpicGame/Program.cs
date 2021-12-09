@@ -11,6 +11,12 @@ namespace SolutionOlimpicGame
 			tree.Add(2, 2);
 			tree.Add(3, 1);
 			tree.Add(4, 3);
+			tree.Add(6, 1);
+			tree.Add(7, 3);
+			tree.Add(9, 1);
+			tree.Add(5, 3);
+			tree.Add(11, 1);
+			tree.Add(15, 3);
 
 			tree.Print();
 
