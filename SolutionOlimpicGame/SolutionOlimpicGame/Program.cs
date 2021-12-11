@@ -24,19 +24,19 @@ namespace SolutionOlimpicGame
 			var key = 3;
 			Console.WriteLine($"Значение в дереве по ключу {key}: {tree.GetValue(key)}");
 
-			key = 3;
+			key = 7;
 			Console.WriteLine($"Удаляем узел по ключу {key}") ;
 			tree.Remove(key);
 
 			Console.WriteLine("Вывод дерева:");
 			tree.Print();
 
-			key = 3;
+			key = 7;
 			Console.WriteLine($"Значение в дереве по ключу {key}: {tree.GetValue(key)}");
 			key = 4;
 			Console.WriteLine($"Значение в дереве по ключу {key}: {tree.GetValue(key)}");
 
-			key = 3;
+			key = 7;
 			var value = 17;
 			Console.WriteLine($"Добавляем по ключу {key} значение {value}") ;
 			tree.Add(key, value);
