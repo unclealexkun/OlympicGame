@@ -18,16 +18,23 @@ namespace SolutionOlimpicGame
 			tree.Add(11, 1);
 			tree.Add(15, 3);
 
+			Console.WriteLine("Вывод дерева:");
 			tree.Print();
 
-			Console.WriteLine(tree.GetValue(3));
+			var key = 3;
+			Console.WriteLine($"Значение в дереве по ключу {key}: {tree.GetValue(key)}");
 
-			tree.Remove(3);
+			key = 3;
+			Console.WriteLine($"Удаляем узел по ключу {key}") ;
+			tree.Remove(key);
 
+			Console.WriteLine("Вывод дерева:");
 			tree.Print();
 
-			Console.WriteLine(tree.GetValue(3));
-			Console.WriteLine(tree.GetValue(4));
+			key = 3;
+			Console.WriteLine($"Значение в дереве по ключу {key}: {tree.GetValue(key)}");
+			key = 4;
+			Console.WriteLine($"Значение в дереве по ключу {key}: {tree.GetValue(key)}");
 		}
 	}
 }
