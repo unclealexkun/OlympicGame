@@ -35,6 +35,18 @@ namespace SolutionOlimpicGame
 			Console.WriteLine($"Значение в дереве по ключу {key}: {tree.GetValue(key)}");
 			key = 4;
 			Console.WriteLine($"Значение в дереве по ключу {key}: {tree.GetValue(key)}");
+
+			key = 3;
+			var value = 17;
+			Console.WriteLine($"Добавляем по ключу {key} значение {value}") ;
+			tree.Add(key, value);
+
+			Console.WriteLine("Вывод дерева:");
+			tree.Print();
+
+			Console.WriteLine();
+			Console.WriteLine("Для завершения нажми любую клавишу...");
+			Console.ReadKey();
 		}
 	}
 }
