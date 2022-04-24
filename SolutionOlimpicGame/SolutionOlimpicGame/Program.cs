@@ -22,7 +22,6 @@ namespace SolutionOlimpicGame
 
 				Console.Write("Введи стоимость вложений (млн. руб.): ");
 				decimal.TryParse(Console.ReadLine(), out var cost);
-				decimal.TryParse(Console.ReadLine(), out var cost);
 				project.Cost = cost;
 
 				Console.Write("Введи период без дохода в месяцах: ");
@@ -34,7 +33,6 @@ namespace SolutionOlimpicGame
 				project.InvestorIncome = investorIncome;
 
 				investProjects.Add(project);
-				investProjects.Add(project);
 			}
 
 			var investStrategy = SlyСheese.GetInstance().GetInvestStrategy(investProjects);
@@ -45,7 +43,7 @@ namespace SolutionOlimpicGame
 
 			foreach (var strategy in investStrategy)
 			{
-				var input = string.Format("{0:5}|{1:27}|{2:25}|{3:37}|", strategy.Id, strategy.Cost, strategy.PeriodWithoutIncome, strategy.InvestorIncome);
+				var input = string.Format($"{strategy.Id:5}|{strategy.Cost:20}|{strategy.PeriodWithoutIncome:25}|{strategy.InvestorIncome:37}|");
 				Console.WriteLine(input);
 			}
 		}
